@@ -1,6 +1,5 @@
 package ru.otus.hw.repositories;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
-import ru.otus.hw.models.Author;
 import ru.otus.hw.models.Book;
-import ru.otus.hw.models.Genre;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -37,49 +34,12 @@ class JpaBookRepositoryTest {
     @Autowired
     private TestEntityManager em;
 
-    private List<Author> dbAuthors;
-
-    private List<Genre> dbGenres;
-
-    private List<Book> dbBooks;
-
-    private static List<Author> getDbAuthors() {
-        return IntStream.range(1, 4).boxed()
-                .map(id -> new Author(id, "Author_" + id))
-                .toList();
-    }
-
-    private static List<Genre> getDbGenres() {
-        return IntStream.range(1, 4).boxed()
-                .map(id -> new Genre(id, "Genre_" + id))
-                .toList();
-    }
-
-    private static List<Book> getDbBooks(List<Author> dbAuthors, List<Genre> dbGenres) {
-        return IntStream.range(1, 4).boxed()
-                .map(id -> new Book(id, "BookTitle_" + id, dbAuthors.get(id - 1), dbGenres.get(id - 1)))
-                .toList();
-    }
-
-    private static List<Book> getDbBooks() {
-        var dbAuthors = getDbAuthors();
-        var dbGenres = getDbGenres();
-        return getDbBooks(dbAuthors, dbGenres);
-    }
-
-    @BeforeEach
-    void setUp() {
-        dbAuthors = getDbAuthors();
-        dbGenres = getDbGenres();
-        dbBooks = getDbBooks(dbAuthors, dbGenres);
-    }
-
     @DisplayName("должен загружать книгу по id")
     @ParameterizedTest
-    @MethodSource("getDbBooks")
-    void shouldReturnCorrectBookById(Book testBook) {
-        var actualBook = jpaBookRepository.findById(testBook.getId());
-        var expectedBook = em.find(Book.class, testBook.getId());
+    @MethodSource("getBookIds")
+    void shouldReturnCorrectBookById(long testBook) {
+        var actualBook = jpaBookRepository.findById(testBook);
+        var expectedBook = em.find(Book.class, testBook);
         assertThat(actualBook).isPresent()
                 .get()
                 .isEqualTo(expectedBook);
@@ -90,14 +50,14 @@ class JpaBookRepositoryTest {
     void shouldReturnAllBooks() {
         var actualBooks = jpaBookRepository.findAll();
         assertThat(actualBooks).isNotEmpty()
-                .isEqualTo(getDbBooks());
+                .containsExactlyElementsOf(getDbBooks());
     }
 
     @DisplayName("должен загружать список всех книг")
     @Test
     void shouldReturnCorrectBooksList() {
         var actualBooks = jpaBookRepository.findAll();
-        var expectedBooks = dbBooks;
+        var expectedBooks = getDbBooks();
 
         assertThat(actualBooks).containsExactlyElementsOf(expectedBooks);
         actualBooks.forEach(System.out::println);
@@ -108,7 +68,8 @@ class JpaBookRepositoryTest {
     void shouldSaveNewBook() {
         var expectedBook = new Book(0, "BookTitle_10500",
                 jpaAuthorRepository.findById(TEST_ID).get(),
-                jpaGenreRepository.findById(TEST_ID).get());
+                jpaGenreRepository.findById(TEST_ID).get(),
+                null);
         var returnedBook = jpaBookRepository.save(expectedBook);
         assertThat(returnedBook).isNotNull()
                 .matches(book -> book.getId() > 0)
@@ -125,7 +86,8 @@ class JpaBookRepositoryTest {
     void shouldSaveUpdatedBook() {
         var expectedBook = new Book(TEST_ID, "BookTitle_10500",
                 jpaAuthorRepository.findById(TEST_ID).get(),
-                jpaGenreRepository.findById(TEST_ID).get());
+                jpaGenreRepository.findById(TEST_ID).get(),
+                null);
 
         assertThat(jpaBookRepository.findById(expectedBook.getId()))
                 .isPresent()
@@ -149,5 +111,17 @@ class JpaBookRepositoryTest {
         assertThat(jpaBookRepository.findById(TEST_ID)).isPresent();
         jpaBookRepository.deleteById(TEST_ID);
         assertThat(jpaBookRepository.findById(TEST_ID)).isEmpty();
+    }
+
+    private List<Book> getDbBooks() {
+        return IntStream.range(1, 4).boxed()
+                .map(id -> em.find(Book.class, id))
+                .toList();
+    }
+
+    private static List<Long> getBookIds() {
+        return IntStream.range(1, 4).boxed()
+                .map(Long::valueOf)
+                .toList();
     }
 }

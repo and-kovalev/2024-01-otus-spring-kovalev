@@ -8,6 +8,7 @@ import ru.otus.hw.models.BookComments;
 import ru.otus.hw.repositories.BookCommentsRepository;
 import ru.otus.hw.repositories.BookRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +19,20 @@ public class BookCommentsServiceImpl implements BookCommentsService {
 
     private final BookRepository bookRepository;
 
+    private final BookService bookService;
 
+
+    @Transactional
     @Override
     public List<BookComments> findAllForBook(long bookId) {
-        return bookCommentsRepository.findAllForBook(bookId);
+        var book = bookService.findById(bookId);
+        if (book.isPresent()) {
+            if (!book.get().getBookComments().isEmpty()) {
+                return book.get().getBookComments();
+            }
+        }
+
+        return Collections.emptyList();
     }
 
     @Override

@@ -98,7 +98,8 @@ class BookShellCommandsTest {
                 eq(Long.valueOf(GENRE_ID)))).thenReturn(
                 new Book(Long.parseLong(BOOK_ID), BOOK_TITLE,
                         new Author(Long.parseLong(AUTHOR_ID), ""),
-                        new Genre(Long.parseLong(GENRE_ID), "")));
+                        new Genre(Long.parseLong(GENRE_ID), ""),
+                        null));
 
         shell.run(inputProvider);
         verify(resultHandlerService).handle(argumentCaptor.capture());
@@ -119,7 +120,8 @@ class BookShellCommandsTest {
                 eq(Long.valueOf(GENRE_ID)))).thenReturn(
                 new Book(Long.parseLong(BOOK_ID), BOOK_TITLE,
                         new Author(Long.parseLong(AUTHOR_ID), ""),
-                        new Genre(Long.parseLong(GENRE_ID), "")));
+                        new Genre(Long.parseLong(GENRE_ID), ""),
+                        null));
 
         shell.run(inputProvider);
         verify(resultHandlerService).handle(argumentCaptor.capture());

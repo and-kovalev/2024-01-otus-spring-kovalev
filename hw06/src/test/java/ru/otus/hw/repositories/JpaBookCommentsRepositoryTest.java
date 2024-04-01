@@ -53,15 +53,19 @@ class JpaBookCommentsRepositoryTest {
     @DisplayName("должен загружать все комментарии книги")
     @Test
     void shouldReturnAllBookComments() {
-        var actualBookComments = jpaBookCommentsRepository.findAllForBook(TEST_ID);
+        var book = jpaBookRepository.findById(TEST_ID);
+        assertThat(book.get().getBookComments()).size().isPositive();
+        var actualBookComments = book.get().getBookComments();
         assertThat(actualBookComments).isNotEmpty()
-                .isEqualTo(List.of(jpaBookCommentsRepository.findById(TEST_ID).get()));
+                .containsExactlyElementsOf(List.of(jpaBookCommentsRepository.findById(TEST_ID).get()));
     }
 
     @DisplayName("должен загружать только комментарии одной книги")
     @Test
     void shouldReturnCorrectBookCommentsList() {
-        var actualBookComments = jpaBookCommentsRepository.findAllForBook(TEST_TWO_ID);
+        var book = jpaBookRepository.findById(TEST_TWO_ID);
+        assertThat(book.get().getBookComments()).size().isPositive();
+        var actualBookComments = book.get().getBookComments();
         var expectedBookComments = List.of(jpaBookCommentsRepository.findById(TEST_TWO_ID).get(),
                 jpaBookCommentsRepository.findById(TEST_TWO_ID + TEST_ID).get());
 

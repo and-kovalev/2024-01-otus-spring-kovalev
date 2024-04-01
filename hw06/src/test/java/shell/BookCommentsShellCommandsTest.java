@@ -99,7 +99,8 @@ class BookCommentsShellCommandsTest {
                 new BookComments(Long.parseLong(BOOK_COMMENT_ID), BOOK_COMMENT,
                         new Book(Long.parseLong(BOOK_COMMENT_ID), BOOK_COMMENT,
                                 new Author(Long.parseLong(AUTHOR_ID), ""),
-                                new Genre(Long.parseLong(GENRE_ID), ""))));
+                                new Genre(Long.parseLong(GENRE_ID), ""),
+                                null)));
 
         shell.run(inputProvider);
         verify(resultHandlerService).handle(argumentCaptor.capture());
@@ -120,7 +121,8 @@ class BookCommentsShellCommandsTest {
                 new BookComments(Long.parseLong(BOOK_COMMENT_ID), BOOK_COMMENT,
                         new Book(Long.parseLong(BOOK_COMMENT_ID), BOOK_COMMENT,
                                 new Author(Long.parseLong(AUTHOR_ID), ""),
-                                new Genre(Long.parseLong(GENRE_ID), ""))));
+                                new Genre(Long.parseLong(GENRE_ID), ""),
+                                null)));
 
         shell.run(inputProvider);
         verify(resultHandlerService).handle(argumentCaptor.capture());

@@ -2,29 +2,19 @@ package ru.otus.hw.repositories;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import ru.otus.hw.models.BookComments;
 
-import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Component
 @RequiredArgsConstructor
 public class JpaBookCommentsRepository implements BookCommentsRepository {
 
     @PersistenceContext
     private final EntityManager em;
-
-    @Override
-    public List<BookComments> findAllForBook(long bookId) {
-        TypedQuery<BookComments> query = em.createQuery("select bc from BookComments bc " +
-                " join fetch book b " +
-                "where b.id = :book_id ", BookComments.class);
-        query.setParameter("book_id", bookId);
-        return query.getResultList();
-    }
 
     @Override
     public Optional<BookComments> findById(long id) {

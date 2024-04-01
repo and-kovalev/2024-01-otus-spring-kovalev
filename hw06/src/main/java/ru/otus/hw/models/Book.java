@@ -3,17 +3,22 @@ package ru.otus.hw.models;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedAttributeNode;
 import jakarta.persistence.NamedEntityGraph;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,11 +35,14 @@ public class Book {
     @Column(name = "title", nullable = false, unique = true)
     private String title;
 
-    @OneToOne(targetEntity = Author.class, cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Author.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToOne(targetEntity = Genre.class, cascade = CascadeType.PERSIST)
+    @ManyToOne(targetEntity = Genre.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "genre_id")
     private Genre genre;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<BookComments> bookComments = new ArrayList<>();
 }
