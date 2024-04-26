@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete book comment</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- book edition -->
+<form id="edit-form" action="delBook.html" th:method="post" th:action="@{/api/book_comments/deleteComment(id=${bookComment.id},book.id=${book.id})}" th:object="${bookComment}">
+    <h3>Are you sure want to delete book comment?:</h3>
+
+    <input hidden id="id-input" type="text" readonly="readonly" value="1" th:value="*{id}"/>
+
+    <div class="row">
+        <label for="book-name-input">Comment:</label>
+        <input id="book-name-input" name="title" type="text" readonly="readonly" value="John Doe" th:value="*{getComment()}"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Delete</button>
+        <a href="listBookComments.html" th:href="@{/api/book_comments/(id=${bookComment.getBook().getId()})}">
+            <button type="button">Cancel</button></a>
+    </div>
+</form>
+
+</body>
+</html>
