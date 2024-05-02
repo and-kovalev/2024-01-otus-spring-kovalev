@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>main page</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .mpage {
+            border: 1px solid steelblue;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        .mpage tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+    </style>
+</head>
+<body>
+<h3>lib map:</h3>
+
+<table class="mpage">
+    <thead>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            <a href="/api/authors/">Authors</a>
+        </td>
+        <td>
+            <a href="/api/genres/">Genres</a>
+        </td>
+        <td>
+            <a href="/api/books/">Books</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

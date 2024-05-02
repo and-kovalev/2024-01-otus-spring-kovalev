@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all Book Comments</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .comments {
+            border: 1px solid steelblue;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        .comments tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+        .comments td:last-child, td:first-child {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+<a href="/">Home</a>
+<h3>Book Comments
+    <a href="editBookComment.html" th:href="@{/api/book_comments/newComment(book_id=${book.id})}">add</a>
+    to List:
+</h3>
+
+<table class="comments">
+    <thead>
+    <tr>
+        <th>comment</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comment : ${bookComments}">
+        <td th:text="${comment.comment}">John Doe</td>
+        <td>
+            <a href="editBookComments.html" th:href="@{/api/book_comments/editComment(id=${comment.id})}">Edit</a>
+            <a href="delBookComment.html" th:href="@{/api/book_comments/deleteComment(id=${comment.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

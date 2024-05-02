@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit author</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- author edition -->
+<form id="edit-form" action="editBookComment.html" th:method="post" th:action="@{/api/book_comments/editComment(id=${bookComment.id},book.id=${book.id})}" th:object="${bookComment}">
+    <h3>Book Comments:</h3>
+
+    <input hidden id="book-id-input" type="text" readonly="readonly" value="1" th:value="${book.id}"/>
+
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" value="1" th:value="*{id}"/>
+    </div>
+
+    <div class="row">
+        <label for="author-name-input">Name:</label>
+        <input id="author-name-input" name="comment" type="text" value="John Doe" th:value="*{comment}"/>
+    </div>
+
+    <div class="row">
+        <button type="submit">Save</button>
+        <a href="listBookComments.html" th:href="@{/api/book_comments/(id=${bookComment.getBook().getId()})}">
+            <button type="button">Cancel</button></a>
+    </div>
+</form>
+
+</body>
+</html>
