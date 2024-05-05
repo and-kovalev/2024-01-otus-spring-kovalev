@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit author</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function saveComment() {
+            const id = document.getElementById("id-input")
+            const commentInput = document.getElementById("comment-input")
+            const bookInput = document.getElementById("book-id-input")
+            const book = {id: bookInput.value}
+            const comment = {id : id.value,  comment: commentInput.value, book: book}
+            fetch("/api/book_comments/editComment", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comment)})
+            .then(rawResponse => rawResponse.json())
+        }
+    </script>
+</head>
+<body>
+
+<!-- author edition -->
+<form id="edit-form" action="editBookComment.html" th:method="post" th:object="${bookComment}">
+    <h3>Book Comments:</h3>
+
+    <input hidden id="book-id-input" type="text" readonly="readonly" value="1" th:value="${book.id}"/>
+
+    <div class="row">
+        <label for="id-input">ID:</label>
+        <input id="id-input" type="text" readonly="readonly" value="1" th:value="*{id}"/>
+    </div>
+
+    <div class="row">
+        <label for="comment-input">Name:</label>
+        <input id="comment-input" name="comment" type="text" value="John Doe" th:value="*{comment}"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="saveComment()" name="save">Save</button>
+        <a href="listBookComments.html" th:href="@{/book_comments/(id=${bookComment.getBook().getId()})}">
+            <button type="button">Go Back</button></a>
+    </div>
+</form>
+
+</body>
+</html>
