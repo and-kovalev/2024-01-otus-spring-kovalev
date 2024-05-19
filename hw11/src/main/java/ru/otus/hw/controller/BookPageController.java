@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.hw.exceptions.NotFoundException;
 import ru.otus.hw.models.Book;
@@ -19,8 +20,8 @@ public class BookPageController {
         return "listBooks";
     }
 
-    @GetMapping("/books/editBook")
-    public String editBookPage(@RequestParam("id") String id, Model model) {
+    @GetMapping("/books/{id}")
+    public String editBookPage(@PathVariable(value = "id", required = false) String id, Model model) {
         model.addAttribute("book_id", id);
 
         return "editBook";

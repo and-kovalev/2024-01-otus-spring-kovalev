@@ -65,7 +65,7 @@ class AuthorControllerTest {
         given(authorRepository.save(any())).willReturn(Mono.just(author));
 
         var result = webTestClient
-                .post().uri("/api/authors/editAuthor")
+                .post().uri("/api/authors")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(authorDto)

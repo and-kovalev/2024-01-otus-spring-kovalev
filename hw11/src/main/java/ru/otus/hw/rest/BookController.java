@@ -27,7 +27,7 @@ public class BookController {
         return bookRepository.findById(id).map(BookDto::toDto);
     }
 
-    @PostMapping("/api/books/editBook")
+    @PostMapping("/api/books")
     public Mono<BookDto> saveBook(@RequestBody BookDto book) {
         return bookRepository.findById(book.getId())
                 .flatMap(fbook ->

@@ -91,7 +91,7 @@ class BookControllerTest {
 
 
         var result = webTestClient
-                .post().uri("/api/books/editBook")
+                .post().uri("/api/books")
                 .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(bookDto)

@@ -31,7 +31,7 @@
             const genreInput = document.getElementById("book-genre-input")
             const genre = {id: genreInput.value}
             const book = {id : id.value,  title: nameInput.value, author: author, genre: genre}
-            fetch("/api/books/editBook", {
+            fetch("/api/books", {
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json',

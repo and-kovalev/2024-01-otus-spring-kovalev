@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.otus.hw.exceptions.NotFoundException;
 
@@ -18,8 +19,8 @@ public class AuthorPageController {
         return "listAuthors";
     }
 
-    @GetMapping("/authors/editAuthor")
-    public String editAuthorPage(@RequestParam("id") String id, Model model) {
+    @GetMapping("/authors/{id}")
+    public String editAuthorPage(@PathVariable(value = "id", required = false) String id, Model model) {
         model.addAttribute("author_id", id);
         return "editAuthor";
     }
