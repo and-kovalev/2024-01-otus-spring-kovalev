@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete book comment</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function deleteComment() {
+            const id = document.getElementById("id-input")
+            const comment = {id : id.value}
+            fetch("/api/book_comments/deleteComment", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comment)})
+            .then(rawResponse => rawResponse.json())
+        }
+    </script>
+</head>
+<body>
+
+<!-- comment delete -->
+<form id="edit-form" action="delBookComment.html" th:method="post" th:object="${bookComment}">
+    <h3>Are you sure want to delete book comment?:</h3>
+
+    <input hidden id="id-input" type="text" readonly="readonly" value="1" th:value="*{id}"/>
+
+    <div class="row">
+        <label for="comment-input">Comment:</label>
+        <input id="comment-input" name="title" type="text" readonly="readonly" value="John Doe" th:value="*{getComment()}"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="deleteComment()" name="delete">Delete</button>
+        <a href="listBookComments.html" th:href="@{/book_comments/(id=${bookComment.getBook().getId()})}">
+            <button type="button">Go Back</button></a>
+    </div>
+</form>
+
+</body>
+</html>
