@@ -1,7 +1,6 @@
 package ru.otus.hw.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +21,6 @@ public class AuthorController {
         return authorService.findAll().stream().map(AuthorDto::toDto).toList();
     }
 
-    @PostAuthorize("hasRole('USER')")
     @PostMapping("/api/authors/")
     public AuthorDto saveAuthor(@RequestBody AuthorDto authorDto) {
         var savedAuthor = authorService.save(authorDto.toDomainObject());

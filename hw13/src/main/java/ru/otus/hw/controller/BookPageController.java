@@ -2,7 +2,6 @@ package ru.otus.hw.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,7 +33,6 @@ public class BookPageController {
         return "listBooks";
     }
 
-    @PostAuthorize("hasRole('USER')")
     @GetMapping("/books/{id}")
     public String editBookPage(@PathVariable(value = "id", required = false) long id, Model model) {
         Book book = bookService.findById(id).orElseThrow(NotFoundException::new);
@@ -48,7 +46,6 @@ public class BookPageController {
         return "editBook";
     }
 
-    @PostAuthorize("hasRole('ADMIN')")
     @GetMapping("/books/deleteBook")
     public String deleteBookPage(@RequestParam("id") long id, Model model) {
         Book book = bookService.findById(id).orElseThrow(NotFoundException::new);
@@ -56,7 +53,6 @@ public class BookPageController {
         return "delBook";
     }
 
-    @PostAuthorize("hasRole('USER')")
     @GetMapping("/books/newBook")
     public String newBookPage(Model model) {
         Book book = new Book();

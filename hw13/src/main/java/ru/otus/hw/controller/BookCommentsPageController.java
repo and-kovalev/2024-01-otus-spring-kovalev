@@ -2,7 +2,6 @@ package ru.otus.hw.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,7 +27,6 @@ public class BookCommentsPageController {
         return "listBookComments";
     }
 
-    @PostAuthorize("hasRole('USER')")
     @GetMapping("/book_comments/{id}")
     public String editBookCommentPage(@PathVariable(value = "id", required = false) long id, Model model) {
         BookComments bookComments = bookCommentsService.findById(id).orElseThrow(NotFoundException::new);
@@ -38,7 +36,6 @@ public class BookCommentsPageController {
         return "editBookComment";
     }
 
-    @PostAuthorize("hasRole('USER')")
     @GetMapping("/book_comments/newComment")
     public String newComment(@RequestParam("book_id") long bookId, Model model) {
         BookComments bookComment = new BookComments();
@@ -51,7 +48,6 @@ public class BookCommentsPageController {
         return "editBookComment";
     }
 
-    @PostAuthorize("hasRole('ADMIN')")
     @GetMapping("/book_comments/deleteComment")
     public String deleteBookPage(@RequestParam("id") long id, Model model) {
         BookComments bookComments = bookCommentsService.findById(id).orElseThrow(NotFoundException::new);

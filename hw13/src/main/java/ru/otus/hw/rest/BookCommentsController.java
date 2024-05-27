@@ -1,7 +1,6 @@
 package ru.otus.hw.rest;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +22,12 @@ public class BookCommentsController {
         return bookCommentsService.findAllForBook(bookId).stream().map(BookCommentsDto::toDto).toList();
     }
 
-    @PostAuthorize("hasRole('USER')")
     @PostMapping("/api/book_comments/")
     public BookCommentsDto saveComment(@RequestBody BookCommentsDto bookCommentsDto) {
         var savedBook = bookCommentsService.save(bookCommentsDto);
         return BookCommentsDto.toDto(savedBook);
     }
 
-    @PostAuthorize("hasRole('ADMIN')")
     @PostMapping("/api/book_comments/deleteComment")
     public void deleteComment(@RequestBody BookCommentsDto bookCommentsDto) {
         bookCommentsService.deleteById(bookCommentsDto.getId());
