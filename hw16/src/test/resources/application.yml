@@ -1,0 +1,18 @@
+spring:
+  data:
+    mongodb:
+      port: 27017
+      database: test
+      host: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    defaults:
+      enabled: true

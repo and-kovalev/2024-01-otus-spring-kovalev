@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete book comment</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function deleteComment() {
+            const id = document.getElementById("id-input")
+            const comment = {id : id.value}
+            fetch("/api/book_comments/deleteComment", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comment)})
+            .then(rawResponse => rawResponse.json())
+        }
+    </script>
+</head>
+<body>
+
+<!-- comment delete -->
+<form id="edit-form" action="delBookComment.html" th:method="post" th:object="${bookComment}">
+    <h3>Are you sure want to delete book comment?:</h3>
+
+    <input hidden id="id-input" type="text" readonly="readonly" value="1" th:value="${bookComment_id}"/>
+
+    <div class="row">
+        <label for="comment-input">Comment:</label>
+        <input id="comment-input" name="title" type="text" readonly="readonly" value="John Doe"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="deleteComment()" name="delete">Delete</button>
+        <a href="listBookComments.html" th:href="@{/book_comments/(id=${book_id})}">
+            <button type="button">Go Back</button></a>
+    </div>
+</form>
+<script>
+    $(function () {
+        $.get('/api/book_comments/find?id=' + $('#id-input').val()).done(function (comment) {
+            $('#comment-input').val(comment.comment);
+        })
+    });
+</script>
+</body>
+</html>
