@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit author</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function saveAuthor() {
+            const id = document.getElementById("id-input")
+            const nameInput = document.getElementById("author-name-input")
+            const author = {id : id.value,  fullName: nameInput.value}
+            fetch("/api/authors", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(author)})
+            .then(rawResponse => rawResponse.json())
+        }
+    </script>
+</head>
+<body>
+
+<!-- author edition -->
+<form id="edit-form" action="editAuthor.html" th:method="post" th:object="${author}">
+    <h3>author Info:</h3>
+
+    <input hidden id="id-input" name="id" type="text" readonly="readonly" value="1" th:value="${author_id}"/>
+
+    <div class="row">
+        <label for="author-name-input">Name:</label>
+        <input id="author-name-input" name="fullName" type="text" value="John Doe"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="saveAuthor()" name="save" >Save</button>
+        <a href="listAuthors.html" th:href="@{/authors/}"><button type="button">Go Back</button></a>
+    </div>
+</form>
+<script>
+    $(function () {
+        $.get('/api/authors/find?id=' + $('#id-input').val()).done(function (author) {
+            $('#author-name-input').val(author.fullName);
+        })
+    });
+</script>
+</body>
+</html>
