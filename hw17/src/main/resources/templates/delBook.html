@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Delete book</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        input:read-only {
+            background: lightgray;
+        }
+
+        .row {
+            margin-top: 10px;
+        }
+    </style>
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+        function deleteBook() {
+            const id = document.getElementById("id-input")
+            const book = {id : id.value}
+            fetch("/api/books/deleteBook", {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(book)})
+            .then(rawResponse => rawResponse.json())
+        }
+    </script>
+</head>
+<body>
+
+<!-- book delete -->
+<form id="edit-form" action="delBook.html" th:method="post">
+    <h3>Are you sure want to delete book?:</h3>
+
+    <input hidden id="id-input" type="text" readonly="readonly" value="1" th:value="${book_id}"/>
+
+    <div class="row">
+        <label for="book-name-input">Name:</label>
+        <input id="book-name-input" name="title" type="text" readonly="readonly" value="John Doe"/>
+    </div>
+
+    <div class="row">
+        <button type="button" onclick="deleteBook()" name="delete">Delete</button>
+        <a href="listBooks.html" th:href="@{/books/}"><button type="button">Go Back</button></a>
+    </div>
+</form>
+<script>
+    $(function () {
+        $.get('/api/books/find?id=' + $('#id-input').val()).done(function (book) {
+            $('#book-name-input').val(book.title);
+        })
+    });
+</script>
+</body>
+</html>
