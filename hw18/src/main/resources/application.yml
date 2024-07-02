@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:maindb
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+
+    show-sql: true
+    properties:
+      hibernate:
+      #format_sql: true
+
+resilience4j.rateLimiter:
+  configs:
+    default:
+      timeoutDuration: 5s
+      limitRefreshPeriod: 20s
+      limitForPeriod: 3
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 100
+      permittedNumberOfCallsInHalfOpenState: 10
+      slowCallDurationThreshold: 4s
+      slowCallRateThreshold: 90
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10s
+      minimumNumberOfCalls: 10
+
+logging:
+  level:
+    root: info
+    ru.otus.hw: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    defaults:
+      enabled: true

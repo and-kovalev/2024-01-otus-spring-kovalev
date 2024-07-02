@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all Book Comments</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .comments {
+            border: 1px solid steelblue;
+            width: 300px;
+            border-collapse: collapse;
+        }
+
+        .comments tr td, th {
+            padding: 5px;
+            border: 1px solid steelblue;
+        }
+
+        .comments td:last-child, td:first-child {
+            width: 50px;
+        }
+    </style>
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+<a href="/">Home</a>
+<h3>Book Comments
+    <input hidden id="id-input" name="id-input" type="text" readonly="readonly" value="1" th:value="${book_id}"/>
+    <a href="editBookComment.html" th:href="@{/book_comments/newComment(book_id=${book_id})}">add</a>
+    to List:
+</h3>
+
+<table class="comments">
+    <thead>
+    <tr>
+        <th>comment</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.get('/api/book_comments/list?id=' + $('input[name="id-input"]').val()).done(function (comments) {
+            comments.forEach(function (comment) {
+                $('tbody').append(`
+                    <tr>
+                        <td>${comment.comment}</td>
+                        <td>
+                            <a href="/book_comments/editComment?id=${comment.id}">Edit</a>
+                            <a href="/book_comments/deleteComment?id=${comment.id}">Delete</a>
+                        </td>
+                    </tr>
+                `)
+            });
+        })
+    });
+</script>
+</body>
+</html>
