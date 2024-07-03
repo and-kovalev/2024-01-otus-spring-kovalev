@@ -1,7 +1,6 @@
 package ru.otus.hw.controller;
 
 import io.github.resilience4j.ratelimiter.RequestNotPermitted;
-import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,13 +29,11 @@ public class BookPageController {
     private final GenreService genreService;
 
     @GetMapping("/books/")
-    @RateLimiter(name = "listBooksPage")
     public String listBooksPage() {
         return "listBooks";
     }
 
     @GetMapping("/books/editBook")
-    @RateLimiter(name = "editBookPage")
     public String editBookPage(@RequestParam("id") long id, Model model) {
         Book book = bookService.findById(id).orElseThrow(NotFoundException::new);
         model.addAttribute("book", book);
@@ -50,7 +47,6 @@ public class BookPageController {
     }
 
     @GetMapping("/books/deleteBook")
-    @RateLimiter(name = "deleteBookPage")
     public String deleteBookPage(@RequestParam("id") long id, Model model) {
         Book book = bookService.findById(id).orElseThrow(NotFoundException::new);
         model.addAttribute("book", book);
@@ -58,7 +54,6 @@ public class BookPageController {
     }
 
     @GetMapping("/books/newBook")
-    @RateLimiter(name = "newBookPage")
     public String newBookPage(Model model) {
         Book book = new Book();
         book.setTitle("Book_");

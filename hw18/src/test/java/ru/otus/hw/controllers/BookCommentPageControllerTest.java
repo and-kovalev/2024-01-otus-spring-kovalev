@@ -1,7 +1,11 @@
 package ru.otus.hw.controllers;
 
+import io.github.resilience4j.ratelimiter.RateLimiter;
+import io.github.resilience4j.ratelimiter.RateLimiterConfig;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.function.Try;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -14,11 +18,16 @@ import ru.otus.hw.models.Genre;
 import ru.otus.hw.services.BookCommentsService;
 import ru.otus.hw.services.BookService;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.Callable;
+import java.util.stream.IntStream;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -90,5 +99,33 @@ class BookCommentPageControllerTest {
                         .param("book_id", String.valueOf(BOOK_COMMENT_ID_1))
                         .flashAttr("bookComment", bookComment))
                 .andExpect(view().name("editBookComment"));
+    }
+
+    @DisplayName("Ошибка при установленном RateLimiter")
+    @Test
+    public void testRateLimiter(){
+        RateLimiterConfig config = RateLimiterConfig.custom()
+                .timeoutDuration(Duration.ofMillis(100))
+                .limitRefreshPeriod(Duration.ofSeconds(1))
+                .limitForPeriod(1)
+                .build();
+
+        RateLimiter rateLimiter = RateLimiter.of("listBookCommentsPage", config);
+
+        Callable<List<BookComments>> restrictedSupplier = RateLimiter
+                .decorateCallable(rateLimiter, () -> bookCommentsService.findAllForBook(BOOK_COMMENT_ID_1));
+
+        RequestNotPermitted exception = assertThrows(RequestNotPermitted.class,
+                () -> IntStream.rangeClosed(1,2)
+                        .forEach(i -> {
+                            Try<List<BookComments>> aTry = Try.call(restrictedSupplier);
+                            try {
+                                System.out.println(aTry.get());
+                            } catch (Exception e) {
+                                throw RequestNotPermitted.createRequestNotPermitted(rateLimiter);
+                            }
+                        }));
+
+        assertEquals("RateLimiter 'listBookCommentsPage' does not permit further calls", exception.getMessage());
     }
 }

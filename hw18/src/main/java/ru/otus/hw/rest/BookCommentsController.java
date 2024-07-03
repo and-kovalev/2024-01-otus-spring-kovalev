@@ -1,7 +1,6 @@
 package ru.otus.hw.rest;
 
-import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.RequestNotPermitted;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,26 +21,23 @@ public class BookCommentsController {
     private final BookCommentsService bookCommentsService;
 
     @GetMapping("/api/book_comments/list")
-    @CircuitBreaker(name = "listBookComments")
     public List<BookCommentsDto> listBookComments(@RequestParam("id") long bookId) {
         return bookCommentsService.findAllForBook(bookId).stream().map(BookCommentsDto::toDto).toList();
     }
 
     @PostMapping("/api/book_comments/editComment")
-    @CircuitBreaker(name = "saveComment")
     public BookCommentsDto saveComment(@RequestBody BookCommentsDto bookCommentsDto) {
         var savedBook = bookCommentsService.save(bookCommentsDto);
         return BookCommentsDto.toDto(savedBook);
     }
 
     @PostMapping("/api/book_comments/deleteComment")
-    @CircuitBreaker(name = "deleteComment")
     public void deleteComment(@RequestBody BookCommentsDto bookCommentsDto) {
         bookCommentsService.deleteById(bookCommentsDto.getId());
     }
 
-    @ExceptionHandler(CallNotPermittedException.class)
-    public ResponseEntity<String> handleCircuitBreakerOpen(CallNotPermittedException ex) {
+    @ExceptionHandler(RequestNotPermitted.class)
+    public ResponseEntity<String> handleCircuitBreakerOpen(RequestNotPermitted ex) {
         return ResponseEntity.badRequest().body("{}");
     }
 }

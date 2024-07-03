@@ -1,5 +1,6 @@
 package ru.otus.hw.services;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,7 @@ public class BookCommentsServiceImpl implements BookCommentsService {
 
     @Transactional(readOnly = true)
     @Override
+    @RateLimiter(name = "findAllForBook")
     public List<BookComments> findAllForBook(long bookId) {
         var book = bookService.findById(bookId);
         if (book.isPresent()) {
@@ -37,30 +39,35 @@ public class BookCommentsServiceImpl implements BookCommentsService {
     }
 
     @Override
+    @RateLimiter(name = "findByIdBook")
     public Optional<BookComments> findById(long id) {
         return bookCommentsRepository.findById(id);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "insertBook")
     public BookComments insert(String comment, long bookId) {
         return save(0, comment, bookId);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "updateBook")
     public BookComments update(long id, String comment, long bookId) {
         return save(id, comment, bookId);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "deleteByIdBookComments")
     public void deleteById(long id) {
         bookCommentsRepository.deleteById(id);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "saveBookComments")
     public BookComments save(BookCommentsDto bookCommentsDto) {
         var bookComments = bookCommentsRepository.findById(bookCommentsDto.getId())
                 .orElse(new BookComments().setId(bookCommentsDto.getId()));

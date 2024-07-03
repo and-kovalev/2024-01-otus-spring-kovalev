@@ -1,7 +1,6 @@
 package ru.otus.hw.controller;
 
 import io.github.resilience4j.ratelimiter.RequestNotPermitted;
-import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ public class GenrePageController {
     private final GenreService genreService;
 
     @GetMapping("/genres/")
-    @RateLimiter(name = "listGenresPage")
     public String listGenresPage(Model model) {
         List<Genre> genres = genreService.findAll();
         model.addAttribute("genres", genres);

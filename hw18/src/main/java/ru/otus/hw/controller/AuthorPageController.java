@@ -1,7 +1,6 @@
 package ru.otus.hw.controller;
 
 import io.github.resilience4j.ratelimiter.RequestNotPermitted;
-import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,13 +19,11 @@ public class AuthorPageController {
     private final AuthorService authorService;
 
     @GetMapping("/authors/")
-    @RateLimiter(name = "listAuthorsPage")
     public String listAuthorsPage() {
         return "listAuthors";
     }
 
     @GetMapping("/authors/editAuthor")
-    @RateLimiter(name = "editAuthorPage")
     public String editAuthorPage(@RequestParam("id") long id, Model model) {
         Author author = authorService.findById(id).orElseThrow(NotFoundException::new);
         model.addAttribute("author", author);

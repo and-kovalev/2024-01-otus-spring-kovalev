@@ -1,5 +1,6 @@
 package ru.otus.hw.services;
 
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,41 +24,48 @@ public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
 
     @Override
+    @RateLimiter(name = "findByIdBook")
     public Optional<Book> findById(long id) {
         return bookRepository.findById(id);
     }
 
     @Override
+    @RateLimiter(name = "findAllBook")
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "insertDBook")
     public Book insert(String title, long authorId, long genreId) {
         return save(0, title, authorId, genreId);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "insertBook")
     public Book insert(Book book) {
         return save(0, book.getTitle(), book.getAuthor().getId(), book.getGenre().getId());
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "updateBook")
     public Book update(long id, String title, long authorId, long genreId) {
         return save(id, title, authorId, genreId);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "deleteByIdBook")
     public void deleteById(long id) {
         bookRepository.deleteById(id);
     }
 
     @Transactional
     @Override
+    @RateLimiter(name = "saveBook")
     public Book save(BookDto bookDto) {
         var book = bookRepository.findById(bookDto.getId())
                 .orElse(new Book().setId(bookDto.getId()));
