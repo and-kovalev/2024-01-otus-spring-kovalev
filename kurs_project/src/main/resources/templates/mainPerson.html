@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-100" >
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/style.css">
+    <link rel="shortcut icon" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/img/favicon.ico" type="image/x-icon">
+
+      <style media="screen">
+      .custom-list {
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+      }
+      </style>
+
+    <title>Main Person</title>
+   
+  </head>
+  <body class="d-flex flex-column h-100">
+    <input hidden id="id-input" name="id" type="text" readonly="readonly" value="1" th:value="${child_id}"/>
+
+    <div class="container pt-4 pb-4">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+            <a class="navbar-brand" href="/">СБДОУДШ</a>
+
+            <div class="collapse navbar-collapse" id="navbarsExample09">
+                <ul class="navbar-nav custom-list">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/child/AddService/__${child_id}__}">Забронировать услугу</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/child/listSchedule"
+                           th:href="@{/child/listSchedule/__${child_id}__}">Расписание</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/child/ListTeachers">Список педагогов</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+      
+    <footer class="footer mt-auto py-3">
+        <div class="container pb-5">
+            <hr>
+            <span class="text-muted">
+                <a  href="/logout">Выход</a> Copyright &copy; 2024
+            </span>
+        </div>
+    </footer>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/bootstrap.min.js"></script>
+  </body>
+</html>
