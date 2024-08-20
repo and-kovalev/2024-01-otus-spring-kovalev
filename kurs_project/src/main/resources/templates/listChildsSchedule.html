@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <script src="/webjars/jquery/3.6.4/jquery.min.js"></script>
+
+    <title>List of Schedule</title>
+</head>
+<body>
+<a href="/person/">Назад</a>
+<h3>
+    Расписание
+</h3>
+
+<input hidden id="id-input" name="id" type="text" readonly="readonly" value="1" th:value="${child_id}"/>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <th>Услуга</th>
+        <th>Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<script>
+    $(function () {
+        $.get('/api/schedule/listForChild?id=' + $('#id-input').val()).done(function (schedules) {
+            schedules.forEach(function (schedule) {
+                const options = {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                };
+                const date1 = new Date(schedule.schedule.date);
+                const date2 = date1.toLocaleDateString('ru-RU', options);
+                const childid = $('#id-input').val()
+                $('tbody').append(`
+                    <tr>
+                        <td>${schedule.schedule.educationalService.service}</td>
+                        <td>${date2} ${date1.toLocaleTimeString()}</td>
+                        <td>
+                            <a href="/child/editSchedule/${schedule.id}?child=${childid}">Перенести</a>
+                            <a href="/child/DelService/${schedule.id}?child=${childid}">Отменить</a>
+                        </td>
+                    </tr>
+                `)
+            });
+        })
+    });
+</script>
+</body>
+</html>

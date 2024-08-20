@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Registration</title>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <h1>Регистрация</h1>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="teacher_name">ФИО Учителя</label>
+                    <input type="text" class="form-control" id="teacher_name" placeholder="Введите ФИО">
+                    <small class="form-text text-muted">Введите ФИО Учителя, без сокращений</small>
+                    <label for="teacher_tel">Телефон Учителя</label>
+                    <input type="text" class="form-control-sm" id="teacher_tel" placeholder="Введите телефон">
+                </div>
+                <button type="button" id="save" class="btn btn-primary">Подтвердить</button>
+                <a href="main.html" th:href="@{/}">
+                    <button type="button" class="btn btn-secondary">Отмена</button></a>
+                <div id="p"></div>
+            </form>
+        </div>
+    </main>
+      
+    <footer class="footer mt-auto py-3">
+        <div class="container pb-5">
+            <hr>
+            <span class="text-muted">
+                   <a> Copyright &copy; 2024 </a>
+            </span>
+        </div>
+    </footer>
+
+    
+    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://atuin.ru/demo/masked/jquery.maskedinput.min.js"></script>
+    <script>$("#teacher_tel").mask("+7 (999) 999 - 99 99");</script>
+    <script>var button = document.getElementById("save");
+            const  input_teacher_name = document.getElementById("teacher_name");
+            const  input_teacher_tel = document.getElementById("teacher_tel");
+            const  result = document.getElementById("p");
+
+            button.addEventListener('click', function() {
+              if(input_teacher_name.value === "") {
+                result.textContent = "Заполните пустое поле";
+              } else {
+                 //result.textContent = "Все ок!";
+
+                    const registration = {fio :      input_teacher_name.value,
+                                          telephone: input_teacher_tel.value.replace(/\D/g,'')}
+                    fetch("/api/reg/Teacher", {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(registration)})
+                    .then((response) => {
+                        // Проверяем успешность запроса и выкидываем ошибку
+                        if (!response.ok) {
+                          throw new Error('Ошибка валидации')
+                        }
+                        result.textContent = "Все ок!"
+                        return response.json()
+                      })
+                      // Теперь попадём сюда, так как выбросили ошибку
+                      .catch((err) => {
+                        console.log(err)
+                        result.textContent = err
+                      }
+                    )
+              }
+            }, false)
+    </script>
+  </body>
+</html>

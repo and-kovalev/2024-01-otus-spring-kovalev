@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Add Child Schedule</title>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+
+    <input hidden id="id-input" name="id" type="text" readonly="readonly" value="1" th:value="${child_id}"/>
+
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <h1>Забронировать</h1>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="edu-input">Наименование услуги</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="edu-input"></select>
+                </div>
+                <div class="form-group">
+                    <label for="inputDate">Введите дату:</label>
+                    <input type="datetime-local" class="form-control" id="inputDate">
+                </div>
+                <button type="button" id="save" class="btn btn-primary">Подтвердить</button>
+                <a href="main.html" th:href="@{/person/}">
+                    <button type="button" class="btn btn-secondary">Отмена</button></a>
+            </form>
+        </div>
+    </main>
+      
+    <footer class="footer mt-auto py-3">
+        <div class="container pb-5">
+            <hr>
+            <span class="text-muted">
+                <a> Copyright &copy; 2024 </a>
+            </span>
+        </div>
+    </footer>
+
+    
+    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>var button = document.getElementById("save");
+            const  input_id = document.getElementById("id-input");
+            const  input_edu = document.getElementById("edu-input");
+            const  input_date = document.getElementById("inputDate");
+            const  result = document.getElementById("p");
+
+            button.addEventListener('click', function() {
+              if(input_edu.value === "") {
+                //result.textContent = "Заполните пустое поле";
+              } else {
+                    const edu = {id: input_edu.value}
+                    const schedule = {educationalService: edu, date: input_date.value}
+
+                    fetch("/api/schedule/child?id=" + input_id.value, {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(schedule)})
+                    .then(rawResponse => rawResponse.json())
+                    .then(commits => window.location.href = "/child/listSchedule/"+$('#id-input').val())
+              }
+            }, false)
+    </script>
+    <script>
+    $(function () {
+        $.get('/api/edu/').done(function (edus) {
+            edus.forEach(function (edu) {
+                $('#edu-input').append($('<option>', {
+                    value: edu.id,
+                    text: edu.service
+                }));
+            });
+        })
+    });
+  </script>
+  </body>
+</html>

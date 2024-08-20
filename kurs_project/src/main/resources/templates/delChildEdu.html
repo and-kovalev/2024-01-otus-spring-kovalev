@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+    <title>Del Child Schedule</title>
+
+  </head>
+  <body class="d-flex flex-column h-100">
+
+    <input hidden id="id-input" name="id" type="text" readonly="readonly" value="1" th:value="${schedule_id}"/>
+
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <h1>Вы действительно хотите удалить расписание?</h1>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="inputEdu">Наименование услуги</label>
+                    <input type="text" readonly="readonly" class="form-control" id="inputEdu">
+                </div>
+                <div class="form-group">
+                    <label for="inputDate">Дата</label>
+                    <input type="text" readonly="readonly" class="form-control" id="inputDate">
+                </div>
+                <button type="button" id="delete" class="btn btn-primary">Подтвердить</button>
+                <a href="main.html" th:href="@{/child/listSchedule/__${child_id}__}">
+                    <button type="button" class="btn btn-secondary">Отмена</button></a>
+            </form>
+        </div>
+    </main>
+      
+    <footer class="footer mt-auto py-3">
+        <div class="container pb-5">
+            <hr>
+            <span class="text-muted">
+                <a> Copyright &copy; 2024 </a>
+            </span>
+        </div>
+    </footer>
+
+    
+    <script src="/assets/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>var button = document.getElementById("delete");
+            const  input_id = document.getElementById("id-input");
+
+            button.addEventListener('click', function() {
+                    const schedule = {}
+                    fetch("/api/schedule/child/delete?id=" + input_id.value, {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(schedule)})
+                    .then(rawResponse => rawResponse.json())
+            }, false)
+    </script>
+    <script>
+    $(function () {
+        $.get('/api/schedule/child/find?id=' + $('#id-input').val()).done(function (sch) {
+           const options = {
+                  weekday: "long",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric"
+                };
+            const date1 = new Date(sch.schedule.date);
+            const date2 = date1.toLocaleDateString('ru-RU', options);
+            const d = date2 + date1.toLocaleTimeString();
+            $('#inputEdu').val(sch.schedule.educationalService.service);
+            $('#inputDate').val(d);
+        })
+    });
+</script>
+  </body>
+</html>
