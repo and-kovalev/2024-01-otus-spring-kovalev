@@ -1,0 +1,174 @@
+2024-06-17T22:55:01.414+03:00  INFO 16616 --- [main] ru.otus.hw.Application                   : Starting Application using Java 17.0.6 with PID 16616 (C:\src\Otus\2024-01-otus-spring-kovalev\hw17\target\classes started by and.kovalev in C:\src\Otus\2024-01-otus-spring-kovalev\hw17)
+2024-06-17T22:55:01.416+03:00  INFO 16616 --- [main] ru.otus.hw.Application                   : No active profile set, falling back to 1 default profile: "default"
+2024-06-17T22:55:02.686+03:00  INFO 16616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Reactive MongoDB repositories in DEFAULT mode.
+2024-06-17T22:55:02.835+03:00  INFO 16616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 145 ms. Found 4 Reactive MongoDB repository interfaces.
+2024-06-17T22:55:02.844+03:00  INFO 16616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data MongoDB repositories in DEFAULT mode.
+2024-06-17T22:55:02.849+03:00  INFO 16616 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 4 ms. Found 0 MongoDB repository interfaces.
+2024-06-17T22:55:03.352+03:00  INFO 16616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-06-17T22:55:03.363+03:00  INFO 16616 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-06-17T22:55:03.363+03:00  INFO 16616 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.17]
+2024-06-17T22:55:03.514+03:00  INFO 16616 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-06-17T22:55:03.515+03:00  INFO 16616 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2044 ms
+2024-06-17T22:55:04.080+03:00  INFO 16616 --- [main] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|reactive-streams|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.6+9-LTS-190"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@7f8c48f3, socketChannelClass=null, allocator=null, sslContext=null}, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@273dec10], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@6cceb281, com.mongodb.Jep395RecordCodecProvider@7cca31fc, com.mongodb.KotlinCodecProvider@619c3546]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@29090809], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-17T22:55:04.148+03:00  INFO 16616 --- [main] org.mongodb.driver.client                : MongoClient with metadata {"driver": {"name": "mongo-java-driver|sync|spring-boot", "version": "4.11.1"}, "os": {"type": "Windows", "name": "Windows 10", "architecture": "amd64", "version": "10.0"}, "platform": "Java/Oracle Corporation/17.0.6+9-LTS-190"} created with settings MongoClientSettings{readPreference=primary, writeConcern=WriteConcern{w=null, wTimeout=null ms, journal=null}, retryWrites=true, retryReads=true, readConcern=ReadConcern{level=null}, credential=null, transportSettings=NettyTransportSettings{eventLoopGroup=io.netty.channel.nio.NioEventLoopGroup@2c0798bd, socketChannelClass=null, allocator=null, sslContext=null}, streamFactoryFactory=null, commandListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsCommandListener@273dec10], codecRegistry=ProvidersCodecRegistry{codecProviders=[ValueCodecProvider{}, BsonValueCodecProvider{}, DBRefCodecProvider{}, DBObjectCodecProvider{}, DocumentCodecProvider{}, CollectionCodecProvider{}, IterableCodecProvider{}, MapCodecProvider{}, GeoJsonCodecProvider{}, GridFSFileCodecProvider{}, Jsr310CodecProvider{}, JsonObjectCodecProvider{}, BsonCodecProvider{}, EnumCodecProvider{}, com.mongodb.client.model.mql.ExpressionCodecProvider@6cceb281, com.mongodb.Jep395RecordCodecProvider@7cca31fc, com.mongodb.KotlinCodecProvider@619c3546]}, loggerSettings=LoggerSettings{maxDocumentLength=1000}, clusterSettings={hosts=[localhost:27017], srvServiceName=mongodb, mode=SINGLE, requiredClusterType=UNKNOWN, requiredReplicaSetName='null', serverSelector='null', clusterListeners='[]', serverSelectionTimeout='30000 ms', localThreshold='15 ms'}, socketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=0, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, heartbeatSocketSettings=SocketSettings{connectTimeoutMS=10000, readTimeoutMS=10000, receiveBufferSize=0, proxySettings=ProxySettings{host=null, port=null, username=null, password=null}}, connectionPoolSettings=ConnectionPoolSettings{maxSize=100, minSize=0, maxWaitTimeMS=120000, maxConnectionLifeTimeMS=0, maxConnectionIdleTimeMS=0, maintenanceInitialDelayMS=0, maintenanceFrequencyMS=60000, connectionPoolListeners=[io.micrometer.core.instrument.binder.mongodb.MongoMetricsConnectionPoolListener@29090809], maxConnecting=2}, serverSettings=ServerSettings{heartbeatFrequencyMS=10000, minHeartbeatFrequencyMS=500, serverListeners='[]', serverMonitorListeners='[]'}, sslSettings=SslSettings{enabled=false, invalidHostNameAllowed=false, context=null}, applicationName='null', compressorList=[], uuidRepresentation=JAVA_LEGACY, serverApi=null, autoEncryptionSettings=null, dnsClient=null, inetAddressResolver=null, contextProvider=null}
+2024-06-17T22:55:04.167+03:00  INFO 16616 --- [cluster-ClusterId{value='66709497b64536526034afdf', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$1(NettyStream.java:529) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.lambda$withLock$0(Locks.java:33) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.checkedWithLock(Locks.java:45) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.withLock(Locks.java:39) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.withLock(Locks.java:32) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:516) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:502) ~[mongodb-driver-core-4.11.1.jar:na]
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:322) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:338) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/[0:0:0:0:0:0:0:1]:27017
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:335) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2024-06-17T22:55:04.167+03:00  INFO 16616 --- [cluster-ClusterId{value='66709498b64536526034afe0', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Exception in monitor thread while connecting to server localhost:27017
+
+com.mongodb.MongoSocketOpenException: Exception opening socket
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.lambda$operationComplete$1(NettyStream.java:529) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.lambda$withLock$0(Locks.java:33) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.checkedWithLock(Locks.java:45) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.withLock(Locks.java:39) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.internal.Locks.withLock(Locks.java:32) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:516) ~[mongodb-driver-core-4.11.1.jar:na]
+	at com.mongodb.connection.netty.NettyStream$OpenChannelFutureListener.operationComplete(NettyStream.java:502) ~[mongodb-driver-core-4.11.1.jar:na]
+	at io.netty.util.concurrent.DefaultPromise.notifyListener0(DefaultPromise.java:590) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners0(DefaultPromise.java:583) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListenersNow(DefaultPromise.java:559) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.notifyListeners(DefaultPromise.java:492) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.setValue0(DefaultPromise.java:636) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.setFailure0(DefaultPromise.java:629) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.DefaultPromise.tryFailure(DefaultPromise.java:118) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.fulfillConnectPromise(AbstractNioChannel.java:322) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:338) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/[0:0:0:0:0:0:0:1]:27017
+Caused by: java.net.ConnectException: Connection refused: no further information
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(SocketChannelImpl.java:946) ~[na:na]
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:335) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562) ~[netty-transport-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30) ~[netty-common-4.1.104.Final.jar:4.1.104.Final]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2024-06-17T22:55:04.682+03:00  WARN 16616 --- [main] i.m.api.config.MongockConfiguration      : 
+********************************************************************************
+PROPERTY [changeLogsScanPackage] DEPRECATED. IT WILL BE REMOVED IN NEXT VERSIONS
+Please use the following properties instead: [migrationScanPackage]
+********************************************************************************
+2024-06-17T22:55:04.728+03:00  INFO 16616 --- [main] org.mongodb.driver.cluster               : No server chosen by ReadPreferenceServerSelector{readPreference=primary} from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, serverDescriptions=[ServerDescription{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/[0:0:0:0:0:0:0:1]:27017}, caused by {java.net.ConnectException: Connection refused: no further information}}]}. Waiting for 30000 ms before timing out
+2024-06-17T22:55:05.798+03:00  INFO 16616 --- [cluster-ClusterId{value='66709498b64536526034afe0', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=53274099}
+2024-06-17T22:55:05.941+03:00  INFO 16616 --- [main] i.m.r.core.builder.RunnerBuilderBase     : Mongock runner COMMUNITY version[5.2.4]
+2024-06-17T22:55:05.941+03:00  INFO 16616 --- [main] i.m.r.core.builder.RunnerBuilderBase     : Running Mongock with NO metadata
+2024-06-17T22:55:05.941+03:00  WARN 16616 --- [main] i.m.r.core.builder.RunnerBuilderBase     : Property transaction-enabled not provided. It will become true as default in next versions. Set explicit value to false in case transaction are not desired.
+2024-06-17T22:55:05.941+03:00  WARN 16616 --- [main] i.m.r.core.builder.RunnerBuilderBase     : Property transaction-enabled not provided and is unknown if driver is transactionable. BY DEFAULT MONGOCK WILL RUN IN NO-TRANSACTION MODE.
+2024-06-17T22:55:06.581+03:00  INFO 16616 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 15 endpoint(s) beneath base path '/actuator'
+2024-06-17T22:55:06.647+03:00  INFO 16616 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-06-17T22:55:06.660+03:00  INFO 16616 --- [main] ru.otus.hw.Application                   : Started Application in 5.847 seconds (process running for 6.359)
+2024-06-17T22:55:06.748+03:00  INFO 16616 --- [main] org.reflections.Reflections              : Reflections took 34 ms to scan 1 urls, producing 2 keys and 2 values
+2024-06-17T22:55:06.755+03:00  INFO 16616 --- [main] org.reflections.Reflections              : Reflections took 1 ms to scan 1 urls, producing 2 keys and 2 values
+2024-06-17T22:55:06.777+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock trying to acquire the lock
+2024-06-17T22:55:06.803+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock acquired the lock until: Mon Jun 17 22:56:06 MSK 2024
+2024-06-17T22:55:06.803+03:00  INFO 16616 --- [Thread-2] i.m.driver.core.lock.LockManagerDefault  : Starting mongock lock daemon...
+2024-06-17T22:55:06.811+03:00  INFO 16616 --- [main] i.m.r.c.e.system.SystemUpdateExecutor    : Mongock starting the system update execution id[2024-06-17T22:55:05.940383800-310]...
+2024-06-17T22:55:06.814+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[io.mongock.runner.core.executor.system.changes.SystemChangeUnit00001] with arguments: []
+2024-06-17T22:55:06.817+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[beforeExecution] with arguments: [io.mongock.driver.mongodb.springdata.v4.SpringDataMongoV4ChangeEntryRepository]
+2024-06-17T22:55:06.818+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="system-change-00001_before", "type"="before-execution", "author"="mongock", "class"="SystemChangeUnit00001", "method"="beforeExecution"}
+2024-06-17T22:55:06.825+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[execution] with arguments: [io.mongock.driver.mongodb.springdata.v4.SpringDataMongoV4ChangeEntryRepository]
+2024-06-17T22:55:06.830+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="system-change-00001", "type"="execution", "author"="mongock", "class"="SystemChangeUnit00001", "method"="execution"}
+2024-06-17T22:55:06.834+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock waiting to release the lock
+2024-06-17T22:55:06.834+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock releasing the lock
+2024-06-17T22:55:06.838+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock released the lock
+2024-06-17T22:55:06.838+03:00  INFO 16616 --- [main] i.m.r.c.e.system.SystemUpdateExecutor    : Mongock has finished the system update execution
+2024-06-17T22:55:06.849+03:00  INFO 16616 --- [main] org.reflections.Reflections              : Reflections took 10 ms to scan 1 urls, producing 1 keys and 1 values
+2024-06-17T22:55:06.857+03:00  INFO 16616 --- [main] org.reflections.Reflections              : Reflections took 6 ms to scan 1 urls, producing 1 keys and 1 values
+2024-06-17T22:55:06.866+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock trying to acquire the lock
+2024-06-17T22:55:06.869+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock acquired the lock until: Mon Jun 17 22:56:06 MSK 2024
+2024-06-17T22:55:06.870+03:00  INFO 16616 --- [Thread-3] i.m.driver.core.lock.LockManagerDefault  : Starting mongock lock daemon...
+2024-06-17T22:55:06.872+03:00  INFO 16616 --- [main] i.m.r.c.e.o.migrate.MigrateExecutorBase  : Mongock starting the data migration sequence id[2024-06-17T22:55:05.940383800-310]...
+2024-06-17T22:55:06.899+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[dropDB] with arguments: [com.mongodb.client.MongoDatabase]
+2024-06-17T22:55:06.906+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="dropDB", "type"="execution", "author"="user1", "class"="InitMongoDBDataChangeLog", "method"="dropDB"}
+2024-06-17T22:55:06.933+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[initFirstBook] with arguments: [jdk.proxy2.$Proxy106, jdk.proxy2.$Proxy104, jdk.proxy2.$Proxy107, jdk.proxy2.$Proxy105]
+2024-06-17T22:55:06.996+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, fullName, _class]
+2024-06-17T22:55:07.031+03:00  INFO 16616 --- [main] org.mongodb.driver.cluster               : No server chosen by WritableServerSelector from cluster description ClusterDescription{type=UNKNOWN, connectionMode=SINGLE, serverDescriptions=[ServerDescription{address=localhost:27017, type=UNKNOWN, state=CONNECTING, exception={com.mongodb.MongoSocketOpenException: Exception opening socket}, caused by {io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: no further information: localhost/[0:0:0:0:0:0:0:1]:27017}, caused by {java.net.ConnectException: Connection refused: no further information}}]}. Waiting for 30000 ms before timing out
+2024-06-17T22:55:07.039+03:00  INFO 16616 --- [cluster-ClusterId{value='66709497b64536526034afdf', description='null'}-localhost:27017] org.mongodb.driver.cluster               : Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=4010000}
+2024-06-17T22:55:07.092+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, name, _class]
+2024-06-17T22:55:07.113+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "1"} fields: Document{{}} for class: class ru.otus.hw.models.Author in collection: author
+2024-06-17T22:55:07.137+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "1"} fields: Document{{}} for class: class ru.otus.hw.models.Genre in collection: genre
+2024-06-17T22:55:07.145+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, title, author, genre, _class]
+2024-06-17T22:55:07.159+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "1"} fields: Document{{}} for class: class ru.otus.hw.models.Book in collection: book
+2024-06-17T22:55:07.168+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, comment, book, _class]
+2024-06-17T22:55:07.181+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="initFirstBook", "type"="execution", "author"="user1", "class"="InitMongoDBDataChangeLog", "method"="initFirstBook"}
+2024-06-17T22:55:07.183+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[initSecondBook] with arguments: [jdk.proxy2.$Proxy106, jdk.proxy2.$Proxy104, jdk.proxy2.$Proxy107, jdk.proxy2.$Proxy105]
+2024-06-17T22:55:07.184+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, fullName, _class]
+2024-06-17T22:55:07.187+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, name, _class]
+2024-06-17T22:55:07.190+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "2"} fields: Document{{}} for class: class ru.otus.hw.models.Author in collection: author
+2024-06-17T22:55:07.192+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "2"} fields: Document{{}} for class: class ru.otus.hw.models.Genre in collection: genre
+2024-06-17T22:55:07.195+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, title, author, genre, _class]
+2024-06-17T22:55:07.198+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "2"} fields: Document{{}} for class: class ru.otus.hw.models.Book in collection: book
+2024-06-17T22:55:07.201+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, comment, book, _class]
+2024-06-17T22:55:07.204+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="initSecondBook", "type"="execution", "author"="user1", "class"="InitMongoDBDataChangeLog", "method"="initSecondBook"}
+2024-06-17T22:55:07.206+03:00  INFO 16616 --- [main] i.m.r.c.executor.ChangeLogRuntimeImpl    : method[initThirdBook] with arguments: [jdk.proxy2.$Proxy106, jdk.proxy2.$Proxy104, jdk.proxy2.$Proxy107, jdk.proxy2.$Proxy105]
+2024-06-17T22:55:07.207+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, fullName, _class]
+2024-06-17T22:55:07.210+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, name, _class]
+2024-06-17T22:55:07.212+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "3"} fields: Document{{}} for class: class ru.otus.hw.models.Author in collection: author
+2024-06-17T22:55:07.215+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "3"} fields: Document{{}} for class: class ru.otus.hw.models.Genre in collection: genre
+2024-06-17T22:55:07.217+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, title, author, genre, _class]
+2024-06-17T22:55:07.220+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : findOne using query: { "id" : "3"} fields: Document{{}} for class: class ru.otus.hw.models.Book in collection: book
+2024-06-17T22:55:07.223+03:00 DEBUG 16616 --- [main] o.s.d.m.core.ReactiveMongoTemplate       : Saving Document containing fields: [_id, comment, book, _class]
+2024-06-17T22:55:07.225+03:00  INFO 16616 --- [main] i.m.r.core.executor.ChangeExecutorBase   : APPLIED - {"id"="initThirdBook", "type"="execution", "author"="user1", "class"="InitMongoDBDataChangeLog", "method"="initThirdBook"}
+2024-06-17T22:55:07.227+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock waiting to release the lock
+2024-06-17T22:55:07.228+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock releasing the lock
+2024-06-17T22:55:07.229+03:00  INFO 16616 --- [main] i.m.driver.core.lock.LockManagerDefault  : Mongock released the lock
+2024-06-17T22:55:07.229+03:00  INFO 16616 --- [main] i.m.r.c.e.o.migrate.MigrateExecutorBase  : Mongock has finished
+2024-06-17T22:55:09.047+03:00  INFO 16616 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-06-17T22:55:09.047+03:00  INFO 16616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-06-17T22:55:09.048+03:00  INFO 16616 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-06-17T22:55:10.759+03:00 DEBUG 16616 --- [http-nio-8080-exec-3] o.s.d.m.core.ReactiveMongoTemplate       : find using query: {} fields: Document{{}} for class: class ru.otus.hw.models.Book in collection: book
+2024-06-17T22:55:11.838+03:00 DEBUG 16616 --- [http-nio-8080-exec-6] o.s.d.m.core.ReactiveMongoTemplate       : find using query: { "book" : { "$java" : { "$ref" : "book", "$id" : "1" } } } fields: Document{{}} for class: class ru.otus.hw.models.BookComments in collection: bookComments
